@@ -2,6 +2,8 @@
 
 import os
 import yaml
+from dotenv import load_dotenv
+load_dotenv()
 from pathlib import Path
 from typing import Dict, Any, Optional
 from dataclasses import dataclass
