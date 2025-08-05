@@ -1,0 +1,11 @@
+
+Frequently Asked Questions:
+
+Q: How do I reset my password?
+A: Click on 'Forgot Password' at the login screen and follow instructions.
+
+Q: How can I contact support?
+A: You can reach out via support@example.com or call our toll-free number.
+
+Q: What is your operating hour?
+A: We are available 24/7 for customer support.
