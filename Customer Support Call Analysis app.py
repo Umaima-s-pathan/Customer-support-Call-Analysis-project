@@ -2,6 +2,8 @@ import streamlit as st
 import os
 import time
 import json
+import tempfile
+import traceback
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
@@ -58,11 +60,22 @@ with st.status("Analyzing call...", expanded=True) as status:
     # 1. Transcribe audio
     st.write("🔊 Transcribing audio...")
     try:
-        transcription = components["stt"].transcribe_audio(audio_file)
+        # Handle uploaded file or local file path
+        if isinstance(audio_file, st.runtime.uploaded_file_manager.UploadedFile):
+            suffix = Path(audio_file.name).suffix
+            with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+                tmp.write(audio_file.read())
+                tmp_path = tmp.name
+        else:
+            tmp_path = audio_file  # e.g., from "Load Sample Data"
+        # Transcribe the audio file
+        transcription = components["stt"].transcribe_audio(tmp_path)
         st.session_state.transcription = transcription
     except Exception as e:
-        st.error(f"Transcription failed: {str(e)}")
+        st.error(f"❌ Transcription failed: {str(e)}")
+        st.code(traceback.format_exc())
         st.stop()
+
     
     # 2. Extract insights
     st.write("🧠 Extracting insights...")
