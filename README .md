@@ -91,7 +91,7 @@ Visit: [http://localhost:8501](http://localhost:8501)
 ## 🌐 Live App
 
 You can try the deployed version here:
-**🔗 [Live Streamlit App]([https://yourapp-link.streamlit.app](https://customer-support-call-analysis-project-cnxdjg5hpatycgef2zqkae.streamlit.app/)**
+**🔗 [Live Streamlit App]([https://yourapp-link.streamlit.app](https://customer-support-call-analysis-project-cnxdjg5hpatycgef2zqkae.streamlit.app/))**
 
 ---
 
