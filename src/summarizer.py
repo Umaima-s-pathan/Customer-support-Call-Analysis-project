@@ -50,10 +50,6 @@ class SummaryGenerator:
         if self.use_openai:
             self._setup_openai()
             
-        # Initialize local models
-        self.local_model = None
-        if TRANSFORMERS_AVAILABLE:
-            self._setup_local_model()
             
     def _setup_openai(self) -> None:
         """Setup OpenRouter API client via Streamlit secrets."""
