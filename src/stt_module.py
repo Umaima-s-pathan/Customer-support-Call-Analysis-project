@@ -11,8 +11,8 @@ from dataclasses import dataclass
 import tempfile
 from pydub import AudioSegment
 import logging
-from .config import config_manager
-from .utils import setup_logging, validate_audio_file, get_audio_duration
+from src.config import config_manager
+from src.utils import setup_logging, validate_audio_file, get_audio_duration
 
 
 @dataclass
