@@ -96,6 +96,7 @@ class InsightExtractor:
         try:
             openai_config = self.config.get_openai_config()
             if openai_config.api_key:
+                openai.api_base = "https://openrouter.ai/api/v1" 
                 openai.api_key = openai_config.api_key
                 self.openai_model = openai_config.model
                 self.logger.info("OpenAI API configured successfully")
