@@ -56,39 +56,24 @@ class SummaryGenerator:
             self._setup_local_model()
             
     def _setup_openai(self) -> None:
-    """Setup OpenRouter API client via Streamlit secrets."""
-    try:
-        api_key = st.secrets["OPENROUTER_API_KEY"]
-        openai.api_key = api_key
-        openai.api_base = "https://openrouter.ai/api/v1"
-
-        # Get model from YAML and remap to OpenRouter version
-        config_model = self.config.get_openai_config().model
-        model_mapping = {
-            "gpt-4": "openrouter/gpt-4",
-            "gpt-3.5-turbo": "openrouter/gpt-3.5-turbo",
-            "gpt-4o": "openrouter/gpt-4o"
-        }
-        self.openai_model = model_mapping.get(config_model, "openrouter/gpt-3.5-turbo")
-
-        self.logger.info(f"OpenRouter API configured. Using model: {self.openai_model}")
-    except Exception as e:
-        self.logger.error(f"Failed to configure OpenRouter API: {e}")
-        self.use_openai = False
-            
-    def _setup_local_model(self) -> None:
-        """Setup local summarization model."""
+        """Setup OpenRouter API client via Streamlit secrets."""
         try:
-            # Use BART for summarization
-            self.local_model = pipeline(
-                "summarization",
-                model="facebook/bart-large-cnn",
-                device=-1  # CPU
-            )
-            self.logger.info("Local summarization model loaded successfully")
-            
+            api_key = st.secrets["OPENROUTER_API_KEY"]
+            openai.api_key = api_key
+            openai.api_base = "https://openrouter.ai/api/v1"
+            # Get model from YAML and remap to OpenRouter version
+            config_model = self.config.get_openai_config().model
+            model_mapping = {
+                "gpt-4": "openrouter/gpt-4",
+                "gpt-3.5-turbo": "openrouter/gpt-3.5-turbo",
+                "gpt-4o": "openrouter/gpt-4o"
+            }
+            self.openai_model = model_mapping.get(config_model, "openrouter/gpt-3.5-turbo")
+            self.logger.info(f"OpenRouter API configured. Using model: {self.openai_model}")
         except Exception as e:
-            self.logger.warning(f"Failed to load local summarization model: {e}")
+            self.logger.error(f"Failed to configure OpenRouter API: {e}")
+            self.use_openai = False
+
             
     def generate_summary(self, transcription: TranscriptionResult, 
                         insights: Optional[CallInsights] = None,
