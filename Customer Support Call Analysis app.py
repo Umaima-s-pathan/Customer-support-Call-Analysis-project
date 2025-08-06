@@ -24,8 +24,8 @@ def load_components():
     setup_logging()
     return {
         "stt": SpeechToTextProcessor(),
-        "insight": InsightExtractor(use_openai=False),
-        "summary": SummaryGenerator(use_openai=False),
+        "insight": InsightExtractor(use_openai=True),
+        "summary": SummaryGenerator(use_openai=True),
         "rag": RAGSystem(knowledge_base_path="data/documents")
     }
 
