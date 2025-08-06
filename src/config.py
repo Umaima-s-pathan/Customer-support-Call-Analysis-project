@@ -72,6 +72,7 @@ class ConfigManager:
             
     def _replace_env_vars(self, config: Dict[str, Any]) -> Dict[str, Any]:
     """Replace environment variable placeholders in config with Streamlit secrets."""
+    
     def replace_recursive(obj):
         if isinstance(obj, dict):
             return {k: replace_recursive(v) for k, v in obj.items()}
@@ -83,6 +84,7 @@ class ConfigManager:
         return obj
 
     return replace_recursive(config)
+
 
         
     def _get_default_config(self) -> Dict[str, Any]:
