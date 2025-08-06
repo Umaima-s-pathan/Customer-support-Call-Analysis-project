@@ -11,12 +11,14 @@ __pycache__/
 # -----------------------------
 .env
 *.env
-config.yaml
+config.yaml  # contains placeholder for api_key, keep excluded
 
 # -----------------------------
 # Streamlit
 # -----------------------------
-.streamlit/
+# Ignore everything in .streamlit except secrets.toml
+.streamlit/*
+!.streamlit/secrets.toml
 
 # -----------------------------
 # Logs and Outputs
@@ -26,7 +28,7 @@ data/outputs/
 
 # -----------------------------
 # Audio and Documents
-# (You can keep these locally but avoid uploading to Git)
+# (Keep locally; avoid uploading to GitHub)
 # -----------------------------
 data/audio_samples/
 data/documents/
