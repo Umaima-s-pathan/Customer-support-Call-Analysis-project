@@ -1,36 +1,57 @@
+# -----------------------------
 # Python
+# -----------------------------
 __pycache__/
 *.py[cod]
 *.so
 *.egg-info/
-*.env
+
+# -----------------------------
+# Secrets & Configuration
+# -----------------------------
 .env
+*.env
 config.yaml
 
+# -----------------------------
 # Streamlit
+# -----------------------------
 .streamlit/
 
+# -----------------------------
 # Logs and Outputs
+# -----------------------------
 *.log
 data/outputs/
 
-# Audio and Documents (you can keep samples locally)
+# -----------------------------
+# Audio and Documents
+# (You can keep these locally but avoid uploading to Git)
+# -----------------------------
 data/audio_samples/
 data/documents/
 
+# -----------------------------
 # Jupyter/IPython
+# -----------------------------
 .ipynb_checkpoints/
 *.ipynb
 
+# -----------------------------
 # VSCode / PyCharm
+# -----------------------------
 .vscode/
 .idea/
 
-# OS-specific
-.DS_Store
-Thumbs.db
-
+# -----------------------------
 # Virtual environments
+# -----------------------------
 .venv/
 env/
 venv/
+
+# -----------------------------
+# OS-specific
+# -----------------------------
+.DS_Store
+Thumbs.db
