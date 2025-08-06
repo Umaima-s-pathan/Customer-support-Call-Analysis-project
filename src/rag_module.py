@@ -140,18 +140,18 @@ class RAGSystem:
             self.logger.info("Using simple text chunking")
             
     def _setup_openai(self) -> None:
-    """Setup OpenRouter API for generation."""
-    try:
-        openai_config = self.config.get_openai_config()
-        if openai_config.api_key:
-            openai.api_key = openai_config.api_key
-            openai.api_base = "https://openrouter.ai/api/v1"  # ✅ Set base for OpenRouter
-            self.openai_model = openai_config.model
-            self.logger.info("OpenRouter API configured for RAG generation")
-        else:
-            self.logger.warning("OpenRouter API key not found")
-    except Exception as e:
-        self.logger.error(f"Failed to setup OpenRouter: {e}")
+        """Setup OpenRouter API for generation."""
+        try:
+            openai_config = self.config.get_openai_config()
+            if openai_config.api_key:
+                openai.api_key = openai_config.api_key
+                openai.api_base = "https://openrouter.ai/api/v1"  # ✅ Set base for OpenRouter
+                self.openai_model = openai_config.model
+                self.logger.info("OpenRouter API configured for RAG generation")
+            else:
+                self.logger.warning("OpenRouter API key not found")
+        except Exception as e:
+            self.logger.error(f"Failed to setup OpenRouter: {e}")
 
             
     def _load_knowledge_base(self) -> None:
