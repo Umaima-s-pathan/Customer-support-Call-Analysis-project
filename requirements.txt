@@ -7,12 +7,10 @@ openai-whisper>=20230314
 pydub>=0.25.1
 librosa>=0.10.0
 ffmpeg-python>=0.2.0
-openai>=1.0.0
+openai>=0.28
 langchain>=0.0.340
 transformers>=4.30.0
 sentence-transformers>=2.2.0
 python-dotenv>=1.0.0
 PyYAML>=6.0
 torch>=2.0.0
-python-dotenv>=1.0.0
-ffmpeg
