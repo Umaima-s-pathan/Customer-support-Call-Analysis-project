@@ -9,10 +9,13 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
 import wave
 import numpy as np
+import librosa
 from pydub import AudioSegment
 
 
 def setup_logging(log_level: str = "INFO", log_file: Optional[str] = None) -> logging.Logger:
+    logging.basicConfig(level=logging.INFO)
+    return logging.getLogger(__name__)
     """Set up logging configuration.
     
     Args:
@@ -95,6 +98,8 @@ def load_json(file_path: str) -> Dict[str, Any]:
 
 
 def validate_audio_file(file_path: str) -> bool:
+    valid_extensions = ['.wav', '.mp3', '.m4a', '.flac']
+    return any(file_path.endswith(ext) for ext in valid_extensions)
     """Validate if file is a supported audio format.
     
     Args:
@@ -138,6 +143,8 @@ def convert_audio_format(input_path: str, output_path: str,
 
 
 def get_audio_duration(file_path: str) -> float:
+    audio, sr = librosa.load(file_path, sr=None)
+    return librosa.get_duration(y=audio, sr=sr)
     """Get audio file duration in seconds.
     
     Args:
