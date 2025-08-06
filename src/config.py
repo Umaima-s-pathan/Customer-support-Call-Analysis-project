@@ -71,21 +71,19 @@ class ConfigManager:
             return self._get_default_config()
             
     def _replace_env_vars(self, config: Dict[str, Any]) -> Dict[str, Any]:
-    """Replace environment variable placeholders in config with Streamlit secrets."""
+        """Replace environment variable placeholders in config with Streamlit secrets."""
     
-    def replace_recursive(obj):
-        if isinstance(obj, dict):
-            return {k: replace_recursive(v) for k, v in obj.items()}
-        elif isinstance(obj, list):
-            return [replace_recursive(item) for item in obj]
-        elif isinstance(obj, str) and obj.startswith('${') and obj.endswith('}'):
-            secret_key = obj[2:-1]
-            return st.secrets.get(secret_key, obj)  # fallback to original if not found
-        return obj
-
-    return replace_recursive(config)
-
-
+        def replace_recursive(obj):
+            if isinstance(obj, dict):
+                return {k: replace_recursive(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [replace_recursive(item) for item in obj]
+            elif isinstance(obj, str) and obj.startswith('${') and obj.endswith('}'):
+                secret_key = obj[2:-1]
+                return st.secrets.get(secret_key, obj)  # fallback to original if not found
+            return obj
+                
+        return replace_recursive(config)
         
     def _get_default_config(self) -> Dict[str, Any]:
         """Get default configuration if file is not found."""
