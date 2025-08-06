@@ -1,8 +1,0 @@
-
-Technical Troubleshooting Guide:
-
-1. Restart the device and try again.
-2. Check for software updates.
-3. Ensure internet connectivity.
-4. Reinstall the application if problems persist.
-5. Contact technical support for unresolved issues.
