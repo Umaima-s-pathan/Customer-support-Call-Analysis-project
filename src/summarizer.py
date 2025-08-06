@@ -1,5 +1,5 @@
 """Summary generation module for customer support calls."""
-
+import os
 import streamlit as st
 import openai
 from typing import Dict, List, Any, Optional
