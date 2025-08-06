@@ -55,19 +55,25 @@ class SummaryGenerator:
             self._setup_local_model()
             
     def _setup_openai(self) -> None:
-        """Setup OpenAI API client."""
-        try:
-            openai_config = self.config.get_openai_config()
-            if openai_config.api_key:
-                openai.api_key = openai_config.api_key
-                self.openai_model = openai_config.model
-                self.logger.info("OpenAI API configured for summary generation")
-            else:
-                self.logger.warning("OpenAI API key not found")
-                self.use_openai = False
-        except Exception as e:
-            self.logger.error(f"Failed to setup OpenAI: {e}")
-            self.use_openai = False
+    """Setup OpenRouter API client via Streamlit secrets."""
+    try:
+        api_key = st.secrets["OPENROUTER_API_KEY"]
+        openai.api_key = api_key
+        openai.api_base = "https://openrouter.ai/api/v1"
+
+        # Get model from YAML and remap to OpenRouter version
+        config_model = self.config.get_openai_config().model
+        model_mapping = {
+            "gpt-4": "openrouter/gpt-4",
+            "gpt-3.5-turbo": "openrouter/gpt-3.5-turbo",
+            "gpt-4o": "openrouter/gpt-4o"
+        }
+        self.openai_model = model_mapping.get(config_model, "openrouter/gpt-3.5-turbo")
+
+        self.logger.info(f"OpenRouter API configured. Using model: {self.openai_model}")
+    except Exception as e:
+        self.logger.error(f"Failed to configure OpenRouter API: {e}")
+        self.use_openai = False
             
     def _setup_local_model(self) -> None:
         """Setup local summarization model."""
