@@ -5,7 +5,7 @@ openai:
   max_tokens: 1000
 
 stt:
-  model: "large-v3"
+  model: "base.en"
   language: "auto"
   device: "auto"
   compute_type: "float16"
@@ -17,6 +17,7 @@ rag:
   top_k: 3
   similarity_threshold: 0.7
   vector_store: chromadb
+
 
 
 
