@@ -34,7 +34,7 @@ A powerful Streamlit-based application for analyzing customer support calls and 
 └── /data
 ├── audio\_samples/
 ├── documents/
-└── outputs/
+
 
 ````
 
@@ -66,4 +66,3 @@ You can try the app live:
 
 ---
 
-Let me know if you want this saved as a downloadable `README.md` file or want help uploading it to GitHub.
