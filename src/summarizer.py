@@ -58,7 +58,7 @@ class SummaryGenerator:
     def _setup_openai(self) -> None:
         """Setup OpenRouter API client via Streamlit secrets."""
         try:
-            api_key = os.environ.get("OPENROUTER_API_KEY")
+            api_key = st.secrets["OPENROUTER_API_KEY"]
             openai.api_key = api_key
             openai.api_base = "https://openrouter.ai/api/v1"
             # Get model from YAML and remap to OpenRouter version
