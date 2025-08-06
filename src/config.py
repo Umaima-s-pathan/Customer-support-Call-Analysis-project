@@ -21,7 +21,7 @@ class OpenAIConfig:
 @dataclass
 class STTConfig:
     """Speech-to-Text configuration."""
-    model: str = "openai/whisper-large-v3"
+    model: str = "large-v3"
     language: str = "auto"
     device: str = "auto"
     compute_type: str = "float16"
